@@ -198,3 +198,71 @@ test('grouped short-flags work', t => {
 	t.true(flags.c);
 	t.true(flags.l);
 });
+
+test('supports `number` flag type', t => {
+	const cli = meow({
+		argv: ['--foo=1.3'],
+		flags: {
+			foo: {
+				type: 'number'
+			}
+		}
+	}).flags.foo;
+
+	t.is(cli, 1.3);
+});
+
+test('supports `number` flag type - flag but no value', t => {
+	const cli = meow({
+		argv: ['--foo'],
+		flags: {
+			foo: {
+				type: 'number'
+			}
+		}
+	}).flags.foo;
+
+	t.is(cli, undefined);
+});
+
+test('supports `number` flag type - flag but no value but default', t => {
+	const cli = meow({
+		argv: ['--foo'],
+		flags: {
+			foo: {
+				type: 'number',
+				default: 2
+			}
+		}
+	}).flags.foo;
+
+	t.is(cli, 2);
+});
+
+test('supports `number` flag type - no flag but default', t => {
+	const cli = meow({
+		argv: [],
+		flags: {
+			foo: {
+				type: 'number',
+				default: 2
+			}
+		}
+	}).flags.foo;
+
+	t.is(cli, 2);
+});
+
+test('supports `number` flag type - throws on incorrect default value', t => {
+	t.throws(() => {
+		meow({
+			argv: [],
+			flags: {
+				foo: {
+					type: 'number',
+					default: 'x'
+				}
+			}
+		});
+	});
+});
