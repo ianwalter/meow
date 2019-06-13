@@ -12,11 +12,14 @@
 	"engines": {
 		"node": ">=8"
 	},
+	"main": "dist/meow.js",
 	"scripts": {
-		"test": "xo && ava && tsd"
+		"pretest": "dist --inline",
+		"test": "xo && ava && tsd",
+		"prepublishOnly": "npm run pretest"
 	},
 	"files": [
-		"index.js",
+		"dist",
 		"index.d.ts"
 	],
 	"keywords": [
@@ -52,6 +55,7 @@
 		"yargs-parser": "^13.0.0"
 	},
 	"devDependencies": {
+		"@ianwalter/dist": "^5.0.0",
 		"ava": "^1.4.1",
 		"execa": "^1.0.0",
 		"indent-string": "^3.2.0",

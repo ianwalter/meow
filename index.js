@@ -1,14 +1,13 @@
-'use strict';
-const path = require('path');
-const buildMinimistOptions = require('minimist-options');
-const yargs = require('yargs-parser');
-const camelcaseKeys = require('camelcase-keys');
-const decamelizeKeys = require('decamelize-keys');
-const trimNewlines = require('trim-newlines');
-const redent = require('redent');
-const readPkgUp = require('read-pkg-up');
-const hardRejection = require('hard-rejection');
-const normalizePackageData = require('normalize-package-data');
+import path from 'path';
+import buildMinimistOptions from 'minimist-options';
+import yargs from 'yargs-parser';
+import camelcaseKeys from 'camelcase-keys';
+import decamelizeKeys from 'decamelize-keys';
+import trimNewlines from 'trim-newlines';
+import redent from 'redent';
+import readPkgUp from 'read-pkg-up';
+import hardRejection from 'hard-rejection';
+import normalizePackageData from 'normalize-package-data';
 
 // Prevent caching of this module so module.parent is always accurate
 delete require.cache[__filename];
@@ -129,4 +128,4 @@ const meow = (helpText, options) => {
 	};
 };
 
-module.exports = meow;
+export default meow;
